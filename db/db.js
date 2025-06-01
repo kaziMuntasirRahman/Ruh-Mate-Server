@@ -14,19 +14,19 @@ const client = new MongoClient(uri, {
 
 const connectDB = async () => {
   try {
-    await client.connect()
-    const db = client.db('HackathonDB')
-    await client.db('admin').command({ ping: 1 })
+    // await client.connect()
+    const db = client.db('RuhMateDB')
+    // await client.db('admin').command({ ping: 1 })
     console.log('Pinged your deployment. Successfully connected to MongoDB!')
     return {
-      seatCollection: db.collection('seat'),
-      bookCollection: db.collection('book'),
+      userCollection: db.collection('users'),
+      paymentCollection: db.collection('payments'),
     }
   } catch (err) {
     console.log('Failed to connect to MongoDB: ', err)
   }finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 
